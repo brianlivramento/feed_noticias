@@ -1,0 +1,99 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+<div class="row">				
+	<div id="myTabContent" class="col-lg-9 tab-content">
+		<div id="principal" class="tab-pane fade active in">
+			<div class="col-lg-4">
+				<div class="noticia">
+					<div class="titulo">
+						<h3 class="in"></h3>
+					</div>		
+					<div class="descricao">
+						<p></p>
+						<a href="" class="btn btn-default btn-xs pull-right" target="_blank">Leia mais</a>
+					</div>
+				</div>
+				<div class="barra"></div>
+			</div>	
+		</div>
+		<div id="politica" class="tab-pane fade">
+			<div class="col-lg-4">
+				<div class="noticia">
+					<div class="titulo">
+						<h3 class="in"></h3>
+					</div>		
+					<div class="descricao">
+						<p></p>
+						<a href="" class="btn btn-default btn-xs pull-right" target="_blank">Leia mais</a>
+					</div>
+				</div>
+				<div class="barra"></div>
+			</div>				
+		</div>	
+		<div id="economia" class="tab-pane fade">
+			<div class="col-lg-4">
+				<div class="noticia">
+					<div class="titulo">
+						<h3 class="in"></h3>
+					</div>		
+					<div class="descricao">
+						<p></p>
+						<a href="" class="btn btn-default btn-xs pull-right" target="_blank">Leia mais</a>
+					</div>
+				</div>
+				<div class="barra"></div>
+			</div>				
+		</div>	
+		<div id="esporte" class="tab-pane fade">
+			<div class="col-lg-4">
+				<div class="noticia">
+					<div class="titulo">
+						<h3 class="in"></h3>
+					</div>		
+					<div class="descricao">
+						<p></p>
+						<a href="" class="btn btn-default btn-xs pull-right" target="_blank">Leia mais</a>
+					</div>
+				</div>
+				<div class="barra"></div>
+			</div>				
+		</div>	
+		<div id="mundo" class="tab-pane fade">
+			<div class="col-lg-4">
+				<div class="noticia">
+					<div class="titulo">
+						<h3 class="in"></h3>
+					</div>		
+					<div class="descricao">
+						<p></p>
+						<a href="" class="btn btn-default btn-xs pull-right" target="_blank">Leia mais</a>
+					</div>
+				</div>
+				<div class="barra"></div>
+			</div>				
+		</div>	
+	</div>
+	<div class="col-lg-3 pull-right">
+		<img class="logo" src="img/g1.jpg" alt="G1"><br />
+		<small> ULTIMA_ATUALIZACAO </small>
+		<div class="space"></div>
+		<input type="button" class="btn btn-default" value="Atualizar" onclick="window.location.href=window.location.href">
+		<div class="space"></div>
+		<div class="painel">
+			<ul class="nav nav-pills nav-stacked">
+				<li class="active"><a href="#principal" data-toggle="tab">Principais Notícias</a></li>
+				<li><a href="#politica" data-toggle="tab">Política</a></li>
+				<li><a href="#economia" data-toggle="tab">Economia</a></li>
+				<li><a href="#esporte" data-toggle="tab">Esporte</a></li>
+				<li><a href="#mundo" data-toggle="tab">Mundo</a></li>					
+			</ul>
+		</div>					
+		<div class="barra"></div>					
+	</div>				
+</div>	
+
+{% endblock %}

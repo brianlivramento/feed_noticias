@@ -1,2 +1,2 @@
-<h1>Sistema web com feeds de notícias dos grandes portais</h1>
-<p>Basta importar diretamente no seu htdocs, sem nehum grande segredo.</p>
+<h1>News feeds from the great portals</h1>
+<h4>(in update)</h4>
