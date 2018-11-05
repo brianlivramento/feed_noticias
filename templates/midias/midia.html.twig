@@ -7,21 +7,19 @@
 <div class="row">				
 	<div id="myTabContent" class="col-lg-9 tab-content">
 		
-		<div id="principal" class="tab-pane fade active in">
-			<div class="col-lg-4">
-				{% for n in news %}
-					<div class="noticia">
-						<div class="titulo">
-							<h3 class="in"> {{ n.title }} </h3>
-						</div>		
-						<div class="descricao">
-							<p> {{ n.description }} </p>
-							<a href="{{ n.link }}" class="btn btn-default btn-xs pull-right" target="_blank">Leia mais</a>
-						</div>
+		<div id="principal" class="tab-pane fade active in">			
+			{% for n in news %}
+				<div class="noticia col-lg-4">
+					<div class="titulo">
+						<h3 class="in"> {{ n.title }} </h3>
+					</div>		
+					<div class="descricao">
+						<p> {{ n.description }} </p>
+						<a href="{{ n.link }}" class="btn btn-default btn-xs pull-right" target="_blank">Leia mais</a>
 					</div>
-				{% endfor %}
-				<div class="barra"></div>
-			</div>	
+				</div>
+			{% endfor %}
+			<div class="barra"></div>	
 		</div>
 
 		<div id="politica" class="tab-pane fade">

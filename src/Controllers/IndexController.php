@@ -35,7 +35,7 @@ class IndexController
 					{
 						$headline = [
 							'title' => $xml->channel->item[$k]->title,
-							'description' => $xml->channel->item[$k]->description,
+							'description' => strip_tags($xml->channel->item[$k]->description),
 							'link' => $xml->channel->item[$k]->link
 						];
 						array_push($result, $headline);
@@ -46,7 +46,7 @@ class IndexController
 						
 						$headline = [
 							'title' => $xml->entry[$i]->title,
-							'description' => $description,
+							'description' => strip_tags($description),
 							'link' => $xml->entry[$i]->link
 						];
 						array_push($result, $headline);
