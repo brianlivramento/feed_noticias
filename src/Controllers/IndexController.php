@@ -1,93 +1,67 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controllers;
+
+use Symfony\Component\Yaml\Yaml;
+use Slim\Views\Twig;
 
 class IndexController 
 {
 	const NEWS_LIMIT = 6;
+	const TABS = ['principal', 'politica', 'econonomia', 'esporte', 'mundo'];
 
-	public function getAllNews($xml) 
-	{		
-		$result = null;
-		$xml = simplexml_load_file($xml);
-		if($xml != null) 
-		{					
-			for ($i=0; $i < self::NEWS_LIMIT ; $i++) 
-			{	
-				$result = [
-					'title' => $xml->channel->item[$i]->title,
-					'description' => $xml->channel->item[$i]->description,
-					'link' => $xml->channel->item[$i]->link,
-				];	
-			}	
-		}
-		return $result;
-	}
+	private $view;
 
-	public function getNewsl()
+	public function __construct() 
 	{
-		$this->getAllNews('http://g1.globo.com/dynamo/rss2.xml');
-		return $result;
+        $this->view =  new \Slim\Views\Twig('../templates', [
+			'cache' => '../templates/cache'
+		]);
+    }
+
+	public function getAllNews($arr_xml, $result = array()) 
+	{		
+		for ($i=0; $i < count($arr_xml) ; $i++)  
+		{
+			for ($j=0; $j < count(self::TABS) ; $j++) 
+			{
+				for ($k=0; $k < self::NEWS_LIMIT ; $k++) 
+				{	
+					$xml = array_values($arr_xml);
+					$xml = array_values($xml[$i])[$j];										
+					$xml = simplexml_load_file($xml);	
+					
+					if ( isset($xml->channel->item[$k]->title) )
+					{
+						$headline = [
+							'title' => $xml->channel->item[$k]->title,
+							'description' => $xml->channel->item[$k]->description,
+							'link' => $xml->channel->item[$k]->link
+						];
+						array_push($result, $headline);
+					} else if ( isset($xml->entry[$i]->title) )
+					{						
+						$description = ( isset($xml->entry[$i]->content) ? 
+							$xml->entry[$i]->content : $xml->entry[$i]->summary );
+						
+						$headline = [
+							'title' => $xml->entry[$i]->title,
+							'description' => $description,
+							'link' => $xml->entry[$i]->link
+						];
+						array_push($result, $headline);
+					} 
+				}
+			}
+		}		
+		return $this->view->fetch('midias/midia.html.twig', [
+			'news' => $result
+		]);
 	}
 
-	/**
-http://g1.globo.com/dynamo/rss2.xml principal
-http://g1.globo.com/dynamo/politica/mensalao/rss2.xml
-http://g1.globo.com/dynamo/economia/rss2.xml
-http://g1.globo.com/dynamo/carros/rss2.xml
-http://g1.globo.com/dynamo/mundo/rss2.xml
-
-
-http://ultimosegundo.ig.com.br/rss.xml
-http://br.economia.feedsportal.com/c/33512/f/584953/index.rss
-http://esporte.ig.com.br/rss.xml
-http://ultimosegundo.ig.com.br/mundo/rss.xml
-
-http://noticias.r7.com/brasil/feed.xml
-http://noticias.r7.com/economia/feed.xml
-http://esportes.r7.com/futebol/feed.xml
-http://noticias.r7.com/internacional/feed.xml
-
-http://feeds.folha.uol.com.br/folha/brasil/rss091.xml
-http://feeds.folha.uol.com.br/poder/rss091.xml
-http://feeds.folha.uol.com.br/folha/dinheiro/rss091.xml
-http://feeds.folha.uol.com.br/folha/esporte/rss091.xml
-http://feeds.folha.uol.com.br/folha/mundo/rss091.xml
-
-http://www.estadao.com.br/rss/brasil.xml
-http://www.estadao.com.br/rss/politica.xml
-http://www.estadao.com.br/rss/esportes.xml
-"http://www.estadao.com.br/rss/internacional.xml
-
-http://www.bbc.co.uk/portuguese/index.xml
-http://www.bbc.co.uk/portuguese/topicos/economia/index.xml
-http://www.bbc.co.uk/portuguese/topicos/internacional/index.xml
-
-
-http://www.terra.com.br/rss/Controller?channelid=20e07ef2795b2310VgnVCM3000009af154d0RCRD&ctName=atomo-noticia&lg=pt-br
-
-http://noticias.terra.com.br/rss/Controller?channelid=058251a77fb05310VgnVCM4000009bf154d0RCRD&ctName=atomo-noticia&lg=pt-br
-
-http://economia.terra.com.br/rss/Controller?channelid=6f22bd10e1c4a310VgnVCM4000009bcceb0aRCRD&ctName=atomo-noticia&lg=pt-br
-
-http://esportes.terra.com.br/rss/Controller?channelid=2d19f517cd779310VgnVCM5000009ccceb0aRCRD&ctName=atomo-noticia&lg=pt-br
-
-http://noticias.terra.com.br/rss/Controller?channelid=31b0316871bf3310VgnVCM3000009af154d0RCRD&ctName=atomo-noticia&lg=pt-br
-
-
-http://rss.uol.com.br/feed/noticias.xml
-http://rss.uol.com.br/feed/politica.xml
-http://rss.uol.com.br/feed/economia.xml
-http://esporte.uol.com.br/futebol/ultimas/index.xml
-http://rss.uol.com.br/feed/internacional.xml
-
-
-http://br.noticias.yahoo.com/brasil/?format=rss
-http://br.noticias.yahoo.com/politica/?format=rss
-http://br.noticias.yahoo.com/economia/?format=rss
-http://br.esporteinterativo.yahoo.com/?format=rss
-http://br.noticias.yahoo.com/mundo/?format=rss
-
-
-	**/
+	public function getAllMidias()
+	{		
+		$yaml = Yaml::parse(file_get_contents('../rss/rss.yml'));
+		return $this->getAllNews( array_shift($yaml) );
+	}
 }

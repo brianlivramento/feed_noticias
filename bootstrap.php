@@ -9,7 +9,6 @@ $app = new \Slim\App([
 ]);
 
 $container = $app->getContainer();
-
 $container['view'] = function ($container) {
 	$view = new \Slim\Views\Twig('../templates', [
 		'cache' => '../templates/cache'
@@ -20,9 +19,17 @@ $container['view'] = function ($container) {
 
 	return $view;
 };
+/*
+$container['IndexController'] = function($c) {
+    $view = $c->get("midias/midia.html.twig");
+    return new IndexController($view);
+};*/
 
+/*
 $app->get('/', function ($request, $response, $args) {
     return $this->view->render($response, 'midias/midia.html.twig');
-});
+});*/
+
+$app->get('/', \App\Controllers\IndexController::class . ':getAllMidias');
 
 $app->run();
