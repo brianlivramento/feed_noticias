@@ -11,7 +11,7 @@ $app = new \Slim\App([
 $container = $app->getContainer();
 $container['view'] = function ($container) {
 	$view = new \Slim\Views\Twig('../templates', [
-		'cache' => '../templates/cache'
+		'cache' => false
 	]);
 	$router = $container->get('router');
 	$uri = \Slim\Http\Uri::createFromEnvironment(new \Slim\Http\Environment($_SERVER));
