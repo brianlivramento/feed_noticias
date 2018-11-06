@@ -17,23 +17,24 @@ midias:
 #    econonomia: 
 #    esporte:
 #    mundo: 'http://noticias.r7.com/internacional/feed.xml'
-#  folha:	
-#    principal: 'http://feeds.folha.uol.com.br/folha/brasil/rss091.xml'
-#    politica: 'http://feeds.folha.uol.com.br/poder/rss091.xml'
-#    econonomia: 'http://feeds.folha.uol.com.br/folha/dinheiro/rss091.xml'
-#    esporte: 'http://feeds.folha.uol.com.br/folha/esporte/rss091.xml'
-#    mundo: 'http://feeds.folha.uol.com.br/folha/mundo/rss091.xml'
+  folha:	
+    principal: 'http://feeds.folha.uol.com.br/folha/brasil/rss091.xml'
+    politica: 'http://feeds.folha.uol.com.br/poder/rss091.xml'
+    econonomia: 'http://feeds.folha.uol.com.br/folha/dinheiro/rss091.xml'
+    esporte: 'http://feeds.folha.uol.com.br/folha/esporte/rss091.xml'
+    mundo: 'http://feeds.folha.uol.com.br/folha/mundo/rss091.xml'
 #  estadao:
 #    principal: 'http://www.estadao.com.br/rss/brasil.xml'
 #    politica: 'http://www.estadao.com.br/rss/politica.xml'
 #    econonomia: 
 #    esporte: 'http://www.estadao.com.br/rss/esportes.xml'
-#    mundo: 'http://www.estadao.com.br/rss/internacional.xml'
+#   mundo: 'http://www.estadao.com.br/rss/internacional.xml'
 #  bbc:
 #    principal: 'http://www.bbc.co.uk/portuguese/index.xml'
-#    politica: 
+#    politica:
 #    econonomia: 'http://www.bbc.co.uk/portuguese/topicos/economia/index.xml'
 #    mundo: 'http://www.bbc.co.uk/portuguese/topicos/internacional/index.xml'
+#    esporte:
 #  terra:
 #    principal: 'http://www.terra.com.br/rss/Controller?channelid=20e07ef2795b2310VgnVCM3000009af154d0RCRD&ctName=atomo-noticia&lg=pt-br'
 #    politica: 'http://noticias.terra.com.br/rss/Controller?channelid=058251a77fb05310VgnVCM4000009bf154d0RCRD&ctName=atomo-noticia&lg=pt-br'
