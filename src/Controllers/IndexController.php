@@ -77,7 +77,7 @@ class IndexController
 				array_push($result, $header);	
 			}
 
-			print_r($result);die;
+			//print_r($result);die;
 				
 			return $this->view->fetch('midias/midia.html.twig', [
 				'news' => $result,

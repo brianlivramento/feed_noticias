@@ -31,6 +31,7 @@ $app->get('/', function ($request, $response, $args) {
 });*/
 
 $app->get('/', \App\Controllers\IndexController::class . ':getAllMidias');
+$app->get('/all', \App\Controllers\IndexController::class . ':getAllMidias');
 $app->get('/{sitename}', \App\Controllers\IndexController::class . ':getAllMidias');
 
 $app->run();
